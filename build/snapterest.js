@@ -28907,6 +28907,7 @@ var Collection = React.createClass({displayName: "Collection",
 
     if (numberOfTweetsInCollection > 0) {
       var tweets = this.props.tweets;
+      var htmlMarkup = this.createHtmlMarkupStringOfTweetList();
       var removeAllTweetsFromCollection = this.props.onRemoveAllTweetsFromCollection;
       var handleRemoveTweetFromCollection = this.props.onRemoveTweetFromCollection;
       
@@ -28933,7 +28934,7 @@ var Collection = React.createClass({displayName: "Collection",
 module.exports = Collection;
 
 },{"./CollectionControls.react":232,"./Header.react":235,"./TweetList.react":239,"react":210,"react-dom/server":63}],232:[function(require,module,exports){
-var  React = require('react');
+var React = require('react');
 var Header = require('./Header.react');
 var Button = require('./Button.react');
 var CollectionRenameForm = require('./CollectionRenameForm.react');
@@ -28941,7 +28942,7 @@ var CollectionExportForm = require('./CollectionExportForm.react');
 
 var CollectionControls = React.createClass({displayName: "CollectionControls",
 
-  getInitialiseState: function() {
+  getInitialState: function() {
     return {
       name: 'new',
       isEditingName: false
@@ -28965,12 +28966,18 @@ var CollectionControls = React.createClass({displayName: "CollectionControls",
       );
   },
 
-  toggleEditCollectionName: function(){
-    this.setState({
-      name: name,
-      isEditingName: false
-    });
-  },
+  toggleEditCollectionName: function() {
+        this.setState({
+            isEditingName: !this.state.isEditingName
+        });
+    },
+
+    setCollectionName: function(name) {
+        this.setState({
+            name: name,
+            isEditingName: false
+        });
+    },
 
   render: function () {
 
@@ -29220,7 +29227,7 @@ var StreamTweet = React.createClass({displayName: "StreamTweet",
     
   },
 
-  componentWillReceiveProps: function() {
+  componentWillReceiveProps: function(nextProps) {
     console.log('[Snapterest] StreamTweet: 4. Running componentWillReceiveProps()');
 
     var currentTweetLength = this.props.tweet.text.length;
@@ -29354,7 +29361,7 @@ var TweetList = React.createClass({displayName: "TweetList",
     return Object.keys(this.props.tweets);
   },
 
-  getTweetElement: function() {
+  getTweetElement: function(tweetId) {
     var tweet = this.props.tweets[tweetId];
     var handleRemoveTweetFromCollection = this.props.onRemoveTweetFromCollection;
     var tweetElement;

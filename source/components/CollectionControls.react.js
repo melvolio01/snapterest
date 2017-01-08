@@ -1,4 +1,4 @@
-var  React = require('react');
+var React = require('react');
 var Header = require('./Header.react');
 var Button = require('./Button.react');
 var CollectionRenameForm = require('./CollectionRenameForm.react');
@@ -6,7 +6,7 @@ var CollectionExportForm = require('./CollectionExportForm.react');
 
 var CollectionControls = React.createClass({
 
-  getInitialiseState: function() {
+  getInitialState: function() {
     return {
       name: 'new',
       isEditingName: false
@@ -30,12 +30,18 @@ var CollectionControls = React.createClass({
       );
   },
 
-  toggleEditCollectionName: function(){
-    this.setState({
-      name: name,
-      isEditingName: false
-    });
-  },
+  toggleEditCollectionName: function() {
+        this.setState({
+            isEditingName: !this.state.isEditingName
+        });
+    },
+
+    setCollectionName: function(name) {
+        this.setState({
+            name: name,
+            isEditingName: false
+        });
+    },
 
   render: function () {
 

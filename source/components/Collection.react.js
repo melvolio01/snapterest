@@ -29,6 +29,7 @@ var Collection = React.createClass({
 
     if (numberOfTweetsInCollection > 0) {
       var tweets = this.props.tweets;
+      var htmlMarkup = this.createHtmlMarkupStringOfTweetList();
       var removeAllTweetsFromCollection = this.props.onRemoveAllTweetsFromCollection;
       var handleRemoveTweetFromCollection = this.props.onRemoveTweetFromCollection;
       

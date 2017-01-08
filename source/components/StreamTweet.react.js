@@ -40,7 +40,7 @@ var StreamTweet = React.createClass({
     
   },
 
-  componentWillReceiveProps: function() {
+  componentWillReceiveProps: function(nextProps) {
     console.log('[Snapterest] StreamTweet: 4. Running componentWillReceiveProps()');
 
     var currentTweetLength = this.props.tweet.text.length;
